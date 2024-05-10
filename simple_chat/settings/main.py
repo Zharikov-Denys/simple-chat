@@ -36,6 +36,7 @@ INSTALLED_APPS = [
     'api.v1',
     'users',
     'core',
+    'threads',
 ]
 
 MIDDLEWARE = [
@@ -150,4 +151,6 @@ REST_FRAMEWORK = {
     'TEST_REQUEST_DEFAULT_FORMAT': 'json',
     'DATETIME_FORMAT': 'iso-8601',
     'DATETIME_INPUT_FORMATS': ['iso-8601'],
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
+    'PAGE_SIZE': 100
 }
