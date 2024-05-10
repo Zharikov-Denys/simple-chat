@@ -31,6 +31,11 @@ INSTALLED_APPS = [
 
     'rest_framework',
     'rest_framework.authtoken',
+
+    'api',
+    'api.v1',
+    'users',
+    'core',
 ]
 
 MIDDLEWARE = [
@@ -120,3 +125,29 @@ MEDIA_ROOT = os.path.join(PROJECT_ROOT_DIR, 'media')
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+AUTH_USER_MODEL = 'users.User'
+
+API_AUTHENTICATION_TOKEN_TYPE = 'Bearer'
+
+AUTHENTICATION_BACKENDS = [
+    # simple authentication
+    'users.backends.EmailBackend',
+    'users.authentications.CustomTokenAuthentication',
+]
+
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'users.authentications.CustomTokenAuthentication',
+    ],
+    'DEFAULT_RENDERER_CLASSES': [
+        'rest_framework.renderers.JSONRenderer',
+    ],
+    'DEFAULT_PARSER_CLASSES': [
+        'rest_framework.parsers.JSONParser',
+    ],
+    'TEST_REQUEST_DEFAULT_FORMAT': 'json',
+    'DATETIME_FORMAT': 'iso-8601',
+    'DATETIME_INPUT_FORMATS': ['iso-8601'],
+}
