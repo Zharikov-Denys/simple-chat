@@ -19,9 +19,12 @@ from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
 
+from wagtail.admin import urls as wagtailadmin_urls
+
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    # path('admin/', admin.site.urls),
     path('api/', include(('api.urls', 'api'), namespace='api')),
+    path('wagtail-admin/', include(wagtailadmin_urls)),
 ]
 
 if settings.DEBUG:

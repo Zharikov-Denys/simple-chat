@@ -161,3 +161,5 @@ cython_debug/
 #.idea/
 
 simple_chat/settings/local.py
+
+static/

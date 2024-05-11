@@ -2,6 +2,8 @@ from django.db import models
 from django.utils.translation import gettext_lazy as _
 from django.utils import timezone
 
+from wagtail.admin.panels import FieldPanel
+
 from threads.managers import ThreadManager
 
 
@@ -11,6 +13,12 @@ class Thread(models.Model):
     updated = models.DateTimeField(default=timezone.now, verbose_name=_('Updated'))
 
     objects = ThreadManager()
+
+    panels = [
+        FieldPanel('participants'),
+        FieldPanel('created'),
+        FieldPanel('updated'),
+    ]
 
     class Meta:
         verbose_name = _('Thread')
